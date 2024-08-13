@@ -3,68 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Market Tracker</title>
+    <title>My Essentials Web Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
-        #content {
-            display: none;
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 </head>
 <body>
-    <h1>Welcome to Stock Market Tracker</h1>
 
-    <div id="g_id_onload"
-         data-client_id="YOUR_GOOGLE_CLIENT_ID"
-         data-callback="handleCredentialResponse"
-         data-auto_prompt="false">
+    <header>
+        <h1>My Essentials Web Portal</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Stock Market</h2>
+            <ul>
+                <li><a href="https://www.example.com" target="_blank">Market Watch</a></li>
+                <li><a href="https://www.example.com" target="_blank">Portfolio Tracker</a></li>
+                <li><a href="https://www.example.com" target="_blank">Stock News</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Financial Tools</h2>
+            <ul>
+                <li><a href="https://www.example.com" target="_blank">Budget Planner</a></li>
+                <li><a href="https://www.example.com" target="_blank">Tax Calculator</a></li>
+                <li><a href="https://www.example.com" target="_blank">Investment Calculator</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Learning Resources</h2>
+            <ul>
+                <li><a href="https://www.example.com" target="_blank">Finance Courses</a></li>
+                <li><a href="https://www.example.com" target="_blank">Stock Market Tutorials</a></li>
+                <li><a href="https://www.example.com" target="_blank">Investment Blogs</a></li>
+            </ul>
+        </section>
     </div>
 
-    <div class="g_id_signin" data-type="standard"></div>
-
-    <div id="content">
-        <h2>Protected Stock Market Essentials</h2>
-        <div id="stock-data">
-            <!-- Stock Market Data Will Be Displayed Here -->
-        </div>
-    </div>
-
-    <script>
-        function handleCredentialResponse(response) {
-            const data = jwt_decode(response.credential);
-            console.log("User's email:", data.email);
-
-            if (data.email_verified) {
-                document.getElementById('g_id_onload').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-                fetchStockData();
-            } else {
-                alert('Email not verified');
-            }
-        }
-
-        function fetchStockData() {
-            // Example stock API call (replace with a real API)
-            fetch('https://finnhub.io/api/v1/quote?symbol=AAPL&token=YOUR_API_KEY')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('stock-data').innerHTML = `
-                        <p>Apple Inc. (AAPL)</p>
-                        <p>Current Price: $${data.c}</p>
-                        <p>Open: $${data.o}</p>
-                        <p>High: $${data.h}</p>
-                        <p>Low: $${data.l}</p>
-                        <p>Previous Close: $${data.pc}</p>
-                    `;
-                })
-                .catch(error => console.error('Error fetching stock data:', error));
-        }
-    </script>
 </body>
 </html>
